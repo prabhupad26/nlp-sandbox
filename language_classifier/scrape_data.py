@@ -25,6 +25,8 @@ if __name__ == '__main__':
     print("Running unittest for validating selenium webdriver")
     chromedriver_autoinstaller.install()
     driver = webdriver.Chrome()
+    chromeOptions = webdriver.ChromeOptions()
+    chromeOptions.add_argument("--remote-debugging-port=9222")
     try:
         driver.get("http://www.python.org")
         assert "Python" in driver.title
