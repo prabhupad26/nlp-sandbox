@@ -24,7 +24,6 @@ def start_scraping(driver):
 if __name__ == '__main__':
     print("Running unittest for validating selenium webdriver")
     chromedriver_autoinstaller.install()
-    driver = webdriver.Chrome()
     chromeOptions = webdriver.ChromeOptions()
     chromeOptions.add_argument("--remote-debugging-port=9222")
     chromeOptions.add_argument("--headless")
@@ -35,6 +34,7 @@ if __name__ == '__main__':
     chromeOptions.add_argument("--disable-gpu")
     chromeOptions.add_argument("start-maximized")
     chromeOptions.add_argument("disable-infobars")
+    driver = webdriver.Chrome(options=chromeOptions)
     try:
         driver.get("http://www.python.org")
         assert "Python" in driver.title
