@@ -27,6 +27,7 @@ if __name__ == '__main__':
     driver = webdriver.Chrome()
     chromeOptions = webdriver.ChromeOptions()
     chromeOptions.add_argument("--remote-debugging-port=9222")
+    chromeOptions.add_argument("--headless")
     try:
         driver.get("http://www.python.org")
         assert "Python" in driver.title
