@@ -44,8 +44,7 @@ def lossFun(inputs, targets, hprev):
     dhnext = np.zeros_like(hs[0])
     for t in reversed(range(len(inputs))):
         dy = np.copy(ps[t])
-        dy[targets[
-            t]] -= 1  # backprop into y. see http://cs231n.github.io/neural-networks-case-study/#grad if confused here
+        dy[targets[t]] -= 1  # backprop into y. see http://cs231n.github.io/neural-networks-case-study/#grad if confused here
         dWhy += np.dot(dy, hs[t].T)
         dby += dy
         dh = np.dot(Why.T, dy) + dhnext  # backprop into h
