@@ -26,7 +26,7 @@ if __name__ == '__main__':
     chromedriver_autoinstaller.install()
     chromeOptions = webdriver.ChromeOptions()
     chromeOptions.add_argument("--remote-debugging-port=9222")
-    # chromeOptions.add_argument("--headless")
+    chromeOptions.add_argument("--headless")
     # chromeOptions.add_argument("--no-sandbox")
     # chromeOptions.add_argument("--disable-setuid-sandbox")
     # chromeOptions.add_argument("--disable-dev-shm-using")
