@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 # data I/O
 data = open('input_txt_file.txt', 'r').read()  # should be simple plain text file
@@ -37,14 +38,15 @@ def lossFun(inputs, targets, hprev):
         hs[t] = np.tanh(np.dot(Wxh, xs[t]) + np.dot(Whh, hs[t - 1]) + bh)  # hidden state
         ys[t] = np.dot(Why, hs[t]) + by  # unnormalized log probabilities for next chars
         ps[t] = np.exp(ys[t]) / np.sum(np.exp(ys[t]))  # probabilities for next chars
-        loss += -np.log(ps[t][targets[t], 0])  # softmax (cross-entropy loss)
+        loss += - np.log(ps[t][targets[t], 0])  # softmax (cross-entropy loss)
     # backward pass: compute gradients going backwards
     dWxh, dWhh, dWhy = np.zeros_like(Wxh), np.zeros_like(Whh), np.zeros_like(Why)
     dbh, dby = np.zeros_like(bh), np.zeros_like(by)
     dhnext = np.zeros_like(hs[0])
     for t in reversed(range(len(inputs))):
         dy = np.copy(ps[t])
-        dy[targets[t]] -= 1  # backprop into y. see http://cs231n.github.io/neural-networks-case-study/#grad if confused here
+        dy[targets[
+            t]] -= 1  # backprop into y. see http://cs231n.github.io/neural-networks-case-study/#grad if confused here
         dWhy += np.dot(dy, hs[t].T)
         dby += dy
         dh = np.dot(Why.T, dy) + dhnext  # backprop into h
@@ -98,7 +100,8 @@ while True:
     # forward seq_length characters through the net and fetch gradient
     loss, dWxh, dWhh, dWhy, dbh, dby, hprev = lossFun(inputs, targets, hprev)
     smooth_loss = smooth_loss * 0.999 + loss * 0.001
-    if n % 100 == 0: print('iter %d, loss: %f' % (n, smooth_loss))  # print progress
+    if n % 100 == 0:
+        print('iter %d, loss: %f' % (n, smooth_loss))  # print progress
 
     # perform parameter update with Adagrad
     for param, dparam, mem in zip([Wxh, Whh, Why, bh, by],

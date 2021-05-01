@@ -1,14 +1,3 @@
-"""
-TODO: Scrape the data from https://tatoeba.org/eng/
-Get the data in a csv file in below format
-
-1, en, The weather is nice today.
-1, de, Das Wetter ist heute schön.
-1, es, El clima es agradable hoy.
-1, el, Ο καιρός είναι καλός σήμερα.
-...
-
-"""
 import time
 from selenium import webdriver
 import chromedriver_autoinstaller
